@@ -10,7 +10,13 @@ class Request extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'email',
+        'status',
+        'message',
+        'comment'
+    ];
 
     protected $casts = [
         'status' => RequestEnum::class

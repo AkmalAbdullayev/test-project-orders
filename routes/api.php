@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('requests')->controller(RequestController::class)->name('requests.')->group(function () {
     Route::get('/', 'index')->name('index');
+    Route::post('/', 'store')->name('store');
 });
