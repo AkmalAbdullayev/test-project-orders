@@ -33,6 +33,7 @@ class UpdateRequest extends FormRequest
             'status' => ['required', 'string', new Enum(RequestEnum::class)],
             'message' => ['required', 'string'],
             'comment' => [
+                Rule::requiredIf($this->request->get('status') === RequestEnum::Resolved->value),
                 Rule::excludeIf($this->request->get('status') !== RequestEnum::Resolved->value),
                 'string'
             ]
