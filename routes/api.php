@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\RequestController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('requests')->controller(RequestController::class)->name('requests.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::post('/', 'store')->name('store');
+    Route::put('/{request}', 'update')->name('update');
 });

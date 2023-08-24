@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Actions\StoreRequestAction;
+use App\Actions\UpdateRequestAction;
 use App\Http\Requests\StoreRequest;
+use App\Http\Requests\UpdateRequest;
 use App\Http\Resources\RequestResource;
 use App\Models\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class RequestController extends Controller
 {
-    public function __construct(private readonly StoreRequestAction $storeRequestAction)
+    public function __construct(
+        private readonly StoreRequestAction $storeRequestAction,
+        private readonly UpdateRequestAction $updateRequestAction
+    )
     {
     }
 
@@ -26,5 +31,10 @@ class RequestController extends Controller
         $data = $this->storeRequestAction->handle($request->validated());
 
         return new RequestResource($data);
+    }
+
+    public function update(UpdateRequest $updateRequest, Request $request): void
+    {
+        $this->updateRequestAction->handle($updateRequest->validated(), $request);
     }
 }
