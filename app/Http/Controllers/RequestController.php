@@ -33,10 +33,10 @@ class RequestController extends Controller
         return new RequestResource($data);
     }
 
-    public function update(UpdateRequest $updateRequest, Request $request): Request
+    public function update(UpdateRequest $updateRequest, Request $request): RequestResource
     {
         $this->updateRequestAction->handle($updateRequest->validated(), $request);
 
-        return $request;
+        return new RequestResource($request);
     }
 }
